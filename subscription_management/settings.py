@@ -31,12 +31,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "drf_yasg",
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "core",
+    "manage_subscription",
 ]
 
 MIDDLEWARE = [
@@ -67,6 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'subscription_management.wsgi.application'
+AUTH_USER_MODEL = "core.User"
 
 
 # Database
