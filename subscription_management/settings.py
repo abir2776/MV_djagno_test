@@ -14,6 +14,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from celery.schedules import crontab
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -138,6 +139,12 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = os.getenv("TIME_ZONE")
+CELERY_BEAT_SCHEDULE = {
+    "fetch-exchange-rate-every-hour": {
+        "task": "manage_subscription.tasks.fetch_exchange_rate",
+        "schedule": crontab(minute=0),
+    },
+}
 
 
 # Internationalization
