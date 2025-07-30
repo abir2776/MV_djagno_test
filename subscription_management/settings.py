@@ -10,8 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from datetime import timedelta
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,13 +131,20 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": True,
 }
 
+CELERY_BROKER_URL = os.getenv("REDIS_URL")
+CELERY_RESULT_BACKEND = os.getenv("REDIS_URL")
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = os.getenv("TIME_ZONE")
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = os.getenv("TIME_ZONE")
 
 USE_I18N = True
 
