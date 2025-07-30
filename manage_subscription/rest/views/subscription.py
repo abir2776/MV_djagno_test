@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import generics
 
 from manage_subscription.models import Subscription
@@ -33,3 +34,12 @@ class SubscriptionCancelView(generics.UpdateAPIView):
         user = self.request.user
         queryset = Subscription.objects.filter(user_id=user.id)
         return queryset
+
+
+def subscription_list_view(request):
+    subscriptions = Subscription.objects.filter()
+    return render(
+        request,
+        "subscription_list.html",
+        {"subscriptions": subscriptions},
+    )

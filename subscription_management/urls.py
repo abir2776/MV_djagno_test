@@ -9,6 +9,8 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
+from manage_subscription.rest.views.subscription import subscription_list_view
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Subscription Management",
@@ -56,4 +58,5 @@ urlpatterns = [
     path("api/", include("manage_subscription.rest.urls.subscription")),
     path("api/auth/", include("core.rest.urls.registration")),
     path("api/exchange-rate/", include("manage_subscription.rest.urls.exchange_rate")),
+    path("", subscription_list_view, name="subscription-list-ui"),
 ]
