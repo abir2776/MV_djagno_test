@@ -39,19 +39,21 @@ urlpatterns = [
     ),
     # JWT Token
     path(
-        "api/v1/token",
+        "api/token",
         TokenObtainPairView.as_view(),
         name="token_obtain_pair",
     ),
     path(
-        "api/v1/token/refresh",
+        "api/token/refresh",
         TokenRefreshView.as_view(),
         name="token_refresh",
     ),
     path(
-        "api/v1/token/verify",
+        "api/token/verify",
         TokenVerifyView.as_view(),
         name="token_verify",
     ),
-    path("api/v1/auth/", include("core.rest.urls.registration")),
+    path("api/", include("manage_subscription.rest.urls.subscription")),
+    path("api/auth/", include("core.rest.urls.registration")),
+    path("api/exchange-rate/", include("manage_subscription.rest.urls.exchange_rate")),
 ]

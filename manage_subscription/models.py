@@ -42,4 +42,4 @@ class ExchangeRateLog(BaseModelWithUID):
         unique_together = ("base_currency", "target_currency")
 
     def __str__(self):
-        return f"Base Currency: {self.base_currency}, Target Currency: {self.target_currency}"
+        return f"Base Currency: {self.base_currency}, Target Currency: {self.target_currency}, Fetched_at: {self.fetched_at}"
