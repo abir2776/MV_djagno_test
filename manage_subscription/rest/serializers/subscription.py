@@ -31,7 +31,12 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         validated_data["plan_id"] = plan.id
         validated_data["start_date"] = start_date
         validated_data["end_date"] = end_date
-        return Subscription.objects.create(**validated_data)
+        try:
+            subscription = Subscription.objects.create(**validated_data)
+        except:
+            raise serializers.ValidationError("You already purchase this plan")
+
+        return subscription
 
 
 class SubscriptionCancelSerializer(serializers.ModelSerializer):
